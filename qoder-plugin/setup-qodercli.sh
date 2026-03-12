@@ -43,25 +43,27 @@ echo "Plugin path: ${PLUGIN_DIR}"
 echo "Config file: ${QODER_CONFIG}"
 echo ""
 
-# Check if jq is available
-if ! command -v jq &> /dev/null; then
-    echo -e "${YELLOW}jq not found. Please install jq or manually add to ${QODER_CONFIG}:${NC}"
-    echo ""
-    echo '{'
-    echo '  "plugins": {'
-    echo '    "sources": {'
-    echo '      "local": [{"path": "'"${PLUGIN_DIR}"'"}]'
-    echo '    }'
-    echo '  }'
-    echo '}'
-    echo ""
-    exit 1
-fi
+# JSON escape helper for paths when jq is not available
+json_escape_path() {
+    printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'
+}
 
 # Create or update config
 if [ -f "${QODER_CONFIG}" ]; then
-    # Check if plugin already registered
-    if jq -e ".plugins.sources.local[]? | select(.path == \"${PLUGIN_DIR}\")" "${QODER_CONFIG}" > /dev/null 2>&1; then
+    # Config exists - need jq to safely update it
+    if ! command -v jq &> /dev/null; then
+        ESCAPED_PATH=$(json_escape_path "${PLUGIN_DIR}")
+        echo -e "${YELLOW}jq not found. Please install jq or manually add to ${QODER_CONFIG}:${NC}"
+        echo ""
+        echo "Add this entry to plugins.sources.local array:"
+        echo ""
+        echo "  {\"path\": \"${ESCAPED_PATH}\"}"
+        echo ""
+        exit 1
+    fi
+
+    # Check if plugin already registered (using --arg for safe variable passing)
+    if jq -e --arg path "${PLUGIN_DIR}" '.plugins.sources.local[]? | select(.path == $path)' "${QODER_CONFIG}" > /dev/null 2>&1; then
         echo -e "${GREEN}✓ Plugin already registered in ${QODER_CONFIG}${NC}"
     else
         # Add plugin to existing config
@@ -76,16 +78,31 @@ if [ -f "${QODER_CONFIG}" ]; then
         echo -e "${GREEN}✓ Plugin added to ${QODER_CONFIG}${NC}"
     fi
 else
-    # Create new config
-    cat > "${QODER_CONFIG}" << EOF
+    # Config does not exist - create new
+    if command -v jq &> /dev/null; then
+        # Use jq for safe JSON generation
+        jq -n --arg path "${PLUGIN_DIR}" '
+            {
+                "plugins": {
+                    "sources": {
+                        "local": [{"path": $path}]
+                    }
+                }
+            }
+        ' > "${QODER_CONFIG}"
+    else
+        # Fallback: use bash with escaped path
+        ESCAPED_PATH=$(json_escape_path "${PLUGIN_DIR}")
+        cat > "${QODER_CONFIG}" << EOF
 {
   "plugins": {
     "sources": {
-      "local": [{"path": "${PLUGIN_DIR}"}]
+      "local": [{"path": "${ESCAPED_PATH}"}]
     }
   }
 }
 EOF
+    fi
     echo -e "${GREEN}✓ Created ${QODER_CONFIG} with plugin registered${NC}"
 fi
 
