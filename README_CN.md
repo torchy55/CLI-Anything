@@ -56,7 +56,7 @@ CLI 是人类和 AI Agent 共通的万能接口：
 
 - **Python 3.10+**
 - 目标软件已安装（如 GIMP、Blender、LibreOffice 或你自己的应用）
-- 支持的 AI 编程工具之一：[Claude Code](#-claude-code) | [OpenCode](#-opencode) | [Codex](#-codex) | [Qodercli](#-qodercli) | [更多平台](#-更多平台即将支持)
+- 支持的 AI 编程工具之一：[Claude Code](#-claude-code) | [OpenClaw](#-openclaw) | [OpenCode](#-opencode) | [Codex](#-codex) | [Qodercli](#-qodercli) | [更多平台](#-更多平台即将支持)
 
 ### 选择你的平台
 
@@ -151,12 +151,12 @@ cp -r CLI-Anything/cli-anything-plugin ~/.claude/plugins/cli-anything
 git clone https://github.com/HKUDS/CLI-Anything.git
 
 # 全局安装（所有项目可用）
-cp CLI-Anything/opencode-commands/*.md ~/.config/opencode/commands/
-cp CLI-Anything/cli-anything-plugin/HARNESS.md ~/.config/opencode/commands/
+cp CLI-Anything/opencode-commands/*.md ~/.config/opencode/command/
+cp CLI-Anything/cli-anything-plugin/HARNESS.md ~/.config/opencode/command/
 
 # 或项目级安装
-cp CLI-Anything/opencode-commands/*.md .opencode/commands/
-cp CLI-Anything/cli-anything-plugin/HARNESS.md .opencode/commands/
+cp CLI-Anything/opencode-commands/*.md .opencode/command/
+cp CLI-Anything/cli-anything-plugin/HARNESS.md .opencode/command/
 ```
 
 > **注意：** `HARNESS.md` 是所有命令引用的方法论规范，必须和命令文件放在同一目录下。
@@ -207,6 +207,33 @@ bash CLI-Anything/qoder-plugin/setup-qodercli.sh
 /cli-anything:refine ./gimp "批处理和滤镜"
 /cli-anything:validate ./gimp
 ```
+</details>
+
+<details>
+
+<summary><h4 id="-openclaw">⚡ OpenClaw</h4></summary>
+
+**第一步：安装 Skill**
+
+CLI-Anything 提供了原生的 OpenClaw `SKILL.md` 文件。请将其复制到你的 OpenClaw 技能目录：
+
+```bash
+# Clone the repo
+git clone https://github.com/HKUDS/CLI-Anything.git
+
+# Install to the global skills folder
+mkdir -p ~/.openclaw/skills/cli-anything
+cp CLI-Anything/openclaw-skill/SKILL.md ~/.openclaw/skills/cli-anything/SKILL.md
+```
+
+**第二步：构建 CLI**
+
+安装完成后，你就可以在 OpenClaw 中直接调用：
+
+`@cli-anything build a CLI for ./gimp`
+
+该技能采用了与 Claude Code 和 OpenCode 一致的 7 步构建流程。
+
 </details>
 
 <details>
@@ -751,8 +778,8 @@ git clone https://github.com/HKUDS/CLI-Anything.git
 
 # 请确保使用最新 OpenCode，旧版本可能使用不同的命令目录路径
 # 复制命令和 HARNESS.md 到 OpenCode 命令目录
-cp CLI-Anything/opencode-commands/*.md ~/.config/opencode/commands/
-cp CLI-Anything/cli-anything-plugin/HARNESS.md ~/.config/opencode/commands/
+cp CLI-Anything/opencode-commands/*.md ~/.config/opencode/command/
+cp CLI-Anything/cli-anything-plugin/HARNESS.md ~/.config/opencode/command/
 
 # 为任何有代码库的软件生成 CLI
 /cli-anything <软件路径或仓库>

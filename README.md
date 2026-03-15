@@ -56,7 +56,7 @@ CLI is the universal interface for both humans and AI agents:
 
 - **Python 3.10+**
 - Target software installed (e.g., GIMP, Blender, LibreOffice, or your own application)
-- A supported AI coding agent: [Claude Code](#-claude-code) | [OpenCode](#-opencode) | [Codex](#-codex) | [Qodercli](#-qodercli) | [More Platforms](#-more-platforms-coming-soon)
+- A supported AI coding agent: [Claude Code](#-claude-code) | [OpenClaw](#-openclaw) | [OpenCode](#-opencode) | [Codex](#-codex) | [Qodercli](#-qodercli) | [More Platforms](#-more-platforms-coming-soon)
 
 ### Pick Your Platform
 
@@ -207,6 +207,33 @@ This registers the cli-anything plugin in `~/.qoder.json`. Start a new Qodercli 
 /cli-anything:refine ./gimp "batch processing and filters"
 /cli-anything:validate ./gimp
 ```
+</details>
+
+<details>
+
+<summary><h4 id="-openclaw">⚡ OpenClaw</h4></summary>
+
+**Step 1: Install the Skill**
+
+CLI-Anything provides a native OpenClaw `SKILL.md` file. Copy it to your OpenClaw skills directory:
+
+```bash
+# Clone the repo
+git clone https://github.com/HKUDS/CLI-Anything.git
+
+# Install to the global skills folder
+mkdir -p ~/.openclaw/skills/cli-anything
+cp CLI-Anything/openclaw-skill/SKILL.md ~/.openclaw/skills/cli-anything/SKILL.md
+```
+
+**Step 2: Build a CLI**
+
+Now you can invoke the skill inside OpenClaw:
+
+`@cli-anything build a CLI for ./gimp`
+
+The skill follows the same 7-phase methodology as Claude Code and OpenCode.
+
 </details>
 
 <details>
