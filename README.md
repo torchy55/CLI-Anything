@@ -8,8 +8,8 @@ CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</stron
 <p align="center">
   <a href="#-quick-start"><img src="https://img.shields.io/badge/Quick_Start-5_min-blue?style=for-the-badge" alt="Quick Start"></a>
   <a href="https://hkuds.github.io/CLI-Anything/hub/"><img src="https://img.shields.io/badge/CLI_Hub-Browse_%26_Install-ff69b4?style=for-the-badge" alt="CLI Hub"></a>
-  <a href="#-demonstrations"><img src="https://img.shields.io/badge/Demos-14_Apps-green?style=for-the-badge" alt="Demos"></a>
-  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-1%2C588_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
+  <a href="#-demonstrations"><img src="https://img.shields.io/badge/Demos-16_Apps-green?style=for-the-badge" alt="Demos"></a>
+  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-1%2C720_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License"></a>
 </p>
 
@@ -401,7 +401,7 @@ AI agents are great at reasoning but terrible at using real professional softwar
 | 💸 "UI automation breaks constantly" | No screenshots, no clicking, no RPA fragility. Pure command-line reliability with structured interfaces |
 | 📊 "Agents need structured data" | Built-in JSON output for seamless agent consumption + human-readable formats for debugging |
 | 🔧 "Custom integrations are expensive" | One Claude plugin auto-generates CLIs for ANY codebase through proven 7-phase pipeline |
-| ⚡ "Prototype vs Production gap" | 1,588+ tests with real software validation. Battle-tested across 13 major applications |
+| ⚡ "Prototype vs Production gap" | 1,720 tests with real software validation. Battle-tested across 16 major applications |
 
 ---
 
@@ -502,7 +502,7 @@ SKILL.md files are auto-generated during Phase 6.5 of the pipeline using `skill_
 CLI-Anything works on any software with a codebase — no domain restrictions or architectural limitations.
 
 ### 🏭 Professional-Grade Testing
-Tested across 13 diverse, complex applications spanning creative, productivity, communication, diagramming, AI image generation, and AI content generation domains previously inaccessible to AI agents.
+Tested across 14 diverse, complex applications spanning creative, productivity, communication, diagramming, AI image generation, and AI content generation domains previously inaccessible to AI agents.
 
 ### 🎨 Diverse Domain Coverage
 From creative workflows (image editing, 3D modeling, vector graphics) to production tools (audio, office, live streaming, video editing).
@@ -552,6 +552,13 @@ Each application received complete, production-ready CLI interfaces — not demo
 <td><code>cli-anything-libreoffice</code></td>
 <td>ODF generation + headless LO</td>
 <td align="center">✅ 158</td>
+</tr>
+<tr>
+<td align="center"><strong>📝 <a href="mubu/agent-harness/">Mubu</a></strong></td>
+<td>Knowledge Management &amp; Outlining</td>
+<td><code>cli-anything-mubu</code></td>
+<td>Local Mubu data + sync logs</td>
+<td align="center">✅ 96</td>
 </tr>
 <tr>
 <td align="center"><strong>📹 OBS Studio</strong></td>
@@ -611,11 +618,11 @@ Each application received complete, production-ready CLI interfaces — not demo
 </tr>
 <tr>
 <td align="center" colspan="4"><strong>Total</strong></td>
-<td align="center"><strong>✅ 1,588</strong></td>
+<td align="center"><strong>✅ 1,720</strong></td>
 </tr>
 </table>
 
-> **100% pass rate** across all 1,588 tests — 1,138 unit tests + 450 end-to-end tests.
+> **100% pass rate** across all 1,720 tests — 1,247 unit tests + 473 end-to-end tests.
 
 ---
 
@@ -637,6 +644,7 @@ blender       208 passed  ✅   (150 unit + 58 e2e)
 inkscape      202 passed  ✅   (148 unit + 54 e2e)
 audacity      161 passed  ✅   (107 unit + 54 e2e)
 libreoffice   158 passed  ✅   (89 unit + 69 e2e)
+mubu           96 passed  ✅   (85 unit + 11 e2e)
 obs-studio    153 passed  ✅   (116 unit + 37 e2e)
 kdenlive      155 passed  ✅   (111 unit + 44 e2e)
 shotcut       154 passed  ✅   (110 unit + 44 e2e)
@@ -645,8 +653,9 @@ drawio        138 passed  ✅   (116 unit + 22 e2e)
 mermaid        10 passed  ✅   (5 unit + 5 e2e)
 anygen         50 passed  ✅   (40 unit + 10 e2e)
 comfyui        70 passed  ✅   (60 unit + 10 e2e)
+adguardhome    36 passed  ✅   (24 unit + 12 e2e)
 ──────────────────────────────────────────────────────────────────────────────
-TOTAL        1,588 passed  ✅   100% pass rate
+TOTAL        1,720 passed  ✅   100% pass rate
 ```
 
 ---
@@ -700,6 +709,7 @@ cli-anything/
 ├── ✏️ inkscape/agent-harness/            # Inkscape CLI (202 tests)
 ├── 🎵 audacity/agent-harness/           # Audacity CLI (161 tests)
 ├── 📄 libreoffice/agent-harness/        # LibreOffice CLI (158 tests)
+├── 📝 mubu/agent-harness/               # Mubu CLI (96 tests)
 ├── 📹 obs-studio/agent-harness/         # OBS Studio CLI (153 tests)
 ├── 🎞️ kdenlive/agent-harness/           # Kdenlive CLI (155 tests)
 ├── 🎬 shotcut/agent-harness/            # Shotcut CLI (154 tests)
@@ -811,7 +821,7 @@ HARNESS.md is our definitive SOP for making any software agent-accessible via au
 
 It encodes proven patterns and methodologies refined through automated generation processes.
 
-The playbook distills key insights from successfully building all 13 diverse, production-ready harnesses.
+The playbook distills key insights from successfully building all 14 diverse, production-ready harnesses.
 
 ### Critical Lessons
 
@@ -936,7 +946,7 @@ MIT License — free to use, modify, and distribute.
 
 **CLI-Anything** — *Make any software with a codebase Agent-native.*
 
-<sub>A methodology for the age of AI agents | 13 professional software demos | 1,588 passing tests</sub>
+<sub>A methodology for the age of AI agents | 16 professional software demos | 1,720 passing tests</sub>
 
 <br>
 
