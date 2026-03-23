@@ -56,6 +56,7 @@
 !/musescore/
 !/krita/
 !/iterm2/
+!/renderdoc/
 
 # Step 5: Inside each software dir, ignore everything (including dotfiles)
 /gimp/*
@@ -100,6 +101,8 @@
 /krita/.*
 /iterm2/*
 /iterm2/.*
+/renderdoc/*
+/renderdoc/.*
 
 # Step 6: ...except agent-harness/
 !/gimp/agent-harness/
@@ -124,6 +127,7 @@
 !/musescore/agent-harness/
 !/krita/agent-harness/
 !/iterm2/agent-harness/
+!/renderdoc/agent-harness/
 
 # Step 7: Ignore build artifacts within allowed dirs
 **/__pycache__/
